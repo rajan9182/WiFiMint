@@ -1,0 +1,13 @@
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Node / build
+node_modules/
+build/
+dist/
+
+# Env
+.env
+
