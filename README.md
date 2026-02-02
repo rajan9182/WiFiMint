@@ -1,4 +1,6 @@
-# 🌐 WiFiMint - Professional Managed Network Control System
+# WiFiMint - Professional Managed Network Control System
+
+![WiFiMint Dashboard Preview](assets/dashboard2.png)
 
 **WiFiMint** is a premium, state-of-the-art Wi-Fi vending platform designed for ISPs, hotels, and public hotspots. It provides a seamless captive portal experience, automated network management, and a high-fidelity admin dashboard.
 
@@ -75,6 +77,3 @@ Ensure you are on a Linux system (Ubuntu/Debian recommended).
 
 ## ⚖️ License
 This project is licensed under the MIT License - see the LICENSE file for details.
-=======
-# WiFiMint
-WiFiMint is a professional managed Wi-Fi control system that turns any router or local network into a monetized hotspot. It offers a captive portal, plan-based access, real-time user control, automatic blocking, revenue tracking, and a modern admin dashboard. Designed for ISPs, hotels, and public networks, it is fast, secure, and easy to deploy.
