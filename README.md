@@ -32,7 +32,7 @@ graph TD
 
 ---
 
-## � Linux Installation (Full Features)
+## Linux Installation (Full Features)
 
 Recommended for production use (Ubuntu/Debian).
 
@@ -58,7 +58,7 @@ sudo bash start.sh
 
 ---
 
-## 🪟 Windows Setup & Compatibility
+## Windows Setup & Compatibility
 
 > [!WARNING]
 > **Important**: Low-level networking (Captive Portal, Iptables) is Linux-specific and will **NOT** work natively on Windows.
