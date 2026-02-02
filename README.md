@@ -44,7 +44,7 @@ Ensure you are on a Linux system (Ubuntu/Debian recommended).
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-repo/wifimint.git
+   git clone https://github.com/rajan9182/WiFiMint.git
    cd wifimint
    ```
 
