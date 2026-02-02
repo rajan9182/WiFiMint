@@ -21,13 +21,49 @@
 
 ```mermaid
 graph TD
-    User[Wireless Client] -->|Connect| Hotspot[Wi-Fi Hotspot]
-    Hotspot -->|Traffic Intercept| Backend[Go Backend Engine]
-    Backend -->|Check Auth| DB[(SQLite)]
-    Backend -->|Manage Rules| Firewall[iptables/nftables]
-    Backend -->|DNS Spoof| DNS[Internal DNS Server]
-    Backend -->|Serve UI| Frontend[React + Vite UI]
-    Admin[Administrator] -->|Monitor| Dash[Admin Dashboard]
+    %% Styling
+    classDef client fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef gateway fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef core fill:#dfd,stroke:#333,stroke-width:2px;
+    classDef admin fill:#fdd,stroke:#333,stroke-width:2px;
+
+    subgraph "📱 Client Space"
+        User["📱 User Device"]
+        Browse["🌐 Tries to Browse"]
+    end
+
+    subgraph "📡 WiFiMint Gateway"
+        Hotspot["📡 Wi-Fi Hotspot"]
+        DNS["🔍 DNS Hijacker (Port 53)"]
+        Firewall["🛡️ iptables Firewall"]
+    end
+
+    subgraph "⚙️ Core Platform"
+        Portal["💎 Premium Captive Portal"]
+        Backend["🚀 Go Backend Engine"]
+        DB["💾 SQLite Database"]
+    end
+
+    subgraph "💻 Admin Control"
+        AdminUI["📊 Admin Dashboard"]
+    end
+
+    %% Flow Sequence
+    User -->|Connections| Hotspot
+    Hotspot --> Browse
+    Browse -->|DNS Query Intercepted| DNS
+    DNS -->|HTTP 302 Redirect| Portal
+    Portal -->|Auth Credentials| Backend
+    Backend -->|Check Status| DB
+    Backend -->|Apply Rule| Firewall
+    Firewall -->|✅ Allow Internet| User
+    AdminUI -->|Manage/Monitor| Backend
+
+    %% Class Assignment
+    class User,Browse client;
+    class Hotspot,DNS,Firewall gateway;
+    class Portal,Backend,DB core;
+    class AdminUI admin;
 ```
 
 ---
@@ -83,7 +119,7 @@ Run the UI and Logic on Windows for development or testing without network inter
 
 ---
 
-## � Dashboards & Access
+## Dashboards & Access
 
 | Dashboard | URL | Access |
 | :--- | :--- | :--- |
