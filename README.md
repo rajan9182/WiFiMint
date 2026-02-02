@@ -17,53 +17,34 @@
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Architecture Flow
 
 ```mermaid
-graph TD
+graph LR
     %% Styling
-    classDef client fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef gateway fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef core fill:#dfd,stroke:#333,stroke-width:2px;
-    classDef admin fill:#fdd,stroke:#333,stroke-width:2px;
+    classDef default fill:#1a1a1a,stroke:#333,stroke-width:1px,color:#fff;
+    classDef highlight fill:#00d2ff,stroke:#00d2ff,stroke-width:2px,color:#000;
+    classDef engine fill:#70e000,stroke:#70e000,stroke-width:2px,color:#000;
 
-    subgraph "📱 Client Space"
-        User["📱 User Device"]
-        Browse["🌐 Tries to Browse"]
-    end
+    %% Nodes
+    U(("📱 Client"))
+    H["📡 Hotspot"]
+    G["🛡️ Gateway"]
+    E["🚀 Engine"]
+    D[("💾 Data")]
+    W(("🌐 Web"))
 
-    subgraph "📡 WiFiMint Gateway"
-        Hotspot["📡 Wi-Fi Hotspot"]
-        DNS["🔍 DNS Hijacker (Port 53)"]
-        Firewall["🛡️ iptables Firewall"]
-    end
+    %% Flow
+    U --> H
+    H --> G
+    G -- "Redirect" --> E
+    E <--> D
+    E -- "Whitelist" --> G
+    G --> W
 
-    subgraph "⚙️ Core Platform"
-        Portal["💎 Premium Captive Portal"]
-        Backend["🚀 Go Backend Engine"]
-        DB["💾 SQLite Database"]
-    end
-
-    subgraph "💻 Admin Control"
-        AdminUI["📊 Admin Dashboard"]
-    end
-
-    %% Flow Sequence
-    User -->|Connections| Hotspot
-    Hotspot --> Browse
-    Browse -->|DNS Query Intercepted| DNS
-    DNS -->|HTTP 302 Redirect| Portal
-    Portal -->|Auth Credentials| Backend
-    Backend -->|Check Status| DB
-    Backend -->|Apply Rule| Firewall
-    Firewall -->|✅ Allow Internet| User
-    AdminUI -->|Manage/Monitor| Backend
-
-    %% Class Assignment
-    class User,Browse client;
-    class Hotspot,DNS,Firewall gateway;
-    class Portal,Backend,DB core;
-    class AdminUI admin;
+    %% Style Assignment
+    class E highlight;
+    class G engine;
 ```
 
 ---
